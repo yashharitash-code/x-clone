@@ -4,9 +4,11 @@ import { TbHomeQuestion, TbPhoto } from 'react-icons/tb'
 import { FaRegFaceSmile } from 'react-icons/fa6'
 import { IoLocateOutline } from 'react-icons/io5'
 import { RiCalendarScheduleLine } from 'react-icons/ri'
-import { useState, useRef } from 'react'
+import { useState, useRef, use } from 'react'
 import { RxCross2 } from 'react-icons/rx'
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react'
+import { useGetUser } from '../../custom-hooks/useGetUser'
+import { profile } from 'console'
 
 export default function CreatePost() {
     const [post, setPost] = useState('')
@@ -14,6 +16,7 @@ export default function CreatePost() {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const fileref = useRef<HTMLInputElement>(null);
     const isDisabled = post.trim() === "" && !imagePreview;
+    const { loading, session, profile } = useGetUser();
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -33,10 +36,14 @@ export default function CreatePost() {
         setPost((prev) => prev + emojiData.emoji);
     }
 
+    if (!session) return null;
+    if (!profile) return null;
+    if (loading) return <h1 className='text-2xl text-white'>Loading...</h1>;
+
     return (
         <div className="flex gap-4 p-4 border border-border">
-            <Image src='/images/profile.jpg' alt='profile-pic' width={1440}
-                height={960} className='w-12 h-12 object-cover rounded-full' />
+            {profile?.avatar_url && <Image src={profile.avatar_url} alt='profile-pic' width={1440}
+                height={960} className='w-12 h-12 object-cover rounded-full' />}
             <div className="w-full">
                 <textarea placeholder="what's happening?" className='w-full placeholder:text-secondary-text outline-none text-xl resize-none text-white' value={post} onChange={(e) => { setPost(e.target.value) }}></textarea>
                 {imagePreview && <div className="h-60 md:h-100 rounded-lg overflow-hidden border border-border mb-10 relative">

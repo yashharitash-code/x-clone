@@ -1,12 +1,12 @@
 import { FaFeather, FaRegUser, FaXTwitter } from 'react-icons/fa6'
 import Link from 'next/link'
-import Image from 'next/image'
 import { GoHomeFill } from 'react-icons/go'
 import { IoSearchOutline } from 'react-icons/io5'
 import { BiBell, BiEnvelope } from 'react-icons/bi'
 import { BsPeople } from 'react-icons/bs'
 import { TbDotsCircleHorizontal } from 'react-icons/tb'
-import { HiDotsHorizontal } from 'react-icons/hi'
+import Profile from './Profile'
+import LogoutButton from './LogoutButton'
 
 export default function LeftSidebar() {
     return (
@@ -57,29 +57,12 @@ export default function LeftSidebar() {
                 </Link>
             </div>
 
-            <button className="hidden lg:block bg-white text-black p-3 w-full mt-3 font-bold rounded-full cursor-pointer">
-                Post
-            </button>
+            <LogoutButton />
             <button className='bg-primary p-3 mt-3 rounded-full cursor-pointer text-white lg:hidden'>
                 <FaFeather size={20} />
             </button>
 
-            <div className="mt-10 text-white flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <Image
-                        src='/images/profile.jpg'
-                        alt="Profile"
-                        width={1440}
-                        height={960}
-                        className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <div className='hidden lg:block'>
-                        <p className='font-semibold'>Yash Haritash</p>
-                        <p className='text-secondary-text font-light'>@yashharitash</p>
-                    </div>
-                </div>
-                <HiDotsHorizontal className='hidden lg:block' />
-            </div>
+            <Profile />
         </aside >
     )
 }

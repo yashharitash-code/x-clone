@@ -1,3 +1,5 @@
+import CreatePost from '@/components/CreatePost'
+import Posts from '@/components/Posts'
 import React from 'react'
 
 const Page = () => {
@@ -11,6 +13,8 @@ const Page = () => {
                     Following
                 </button>
             </div>
+            <CreatePost />
+            <Posts />
         </div>
     )
 }

@@ -1,0 +1,18 @@
+import React from 'react'
+
+const Page = () => {
+    return (
+        <div>
+            <div className="border border-border h-14 grid grid-cols-2 text-white">
+                <button className='cursor-pointer font-semibold hover:bg-hover'>
+                    For You
+                </button>
+                <button className='cursor-pointer font-semibold hover:bg-hover'>
+                    Following
+                </button>
+            </div>
+        </div>
+    )
+}
+
+export default Page

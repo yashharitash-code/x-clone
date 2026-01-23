@@ -23,10 +23,10 @@ export default function Posts() {
                         </div>
                         <BsThreeDots className='text-secondary-text' />
                     </div>
-                    <Link href="#" className='text-white my-2 block'>
+                    <Link href="/home/post/123" className='text-white my-2 block'>
                         Sometimes the darkness feels more honest than the light.
                     </Link>
-                    <Link href="#">
+                    <Link href="/home/post/125">
                         <Image src='/images/post1.jpg' alt='post-iamge' width={1800} height={1800} className='h-70 md:h-130 w-full rounded-lg border border-border object-cover' />
                     </Link>
                     <div className="flex justify-between my-4">

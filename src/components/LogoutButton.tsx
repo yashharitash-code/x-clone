@@ -16,7 +16,7 @@ export default function LogoutButton() {
     return (
         <>
             {
-                session ? (<Button size="md" variant="outlined" color="neutral" onClick={LogoutUser} className="w-full">
+                session ? (<Button size="md" variant="outlined" color="neutral" onClick={LogoutUser} className="w-full" sx={{ marginTop: '1.5rem' }}>
                     Logout
                 </Button>) : (<Link className="hidden lg:block bg-white text-black p-3 w-full mt-3 font-bold rounded-full cursor-pointer text-center" href="/">Login </Link>)
             }

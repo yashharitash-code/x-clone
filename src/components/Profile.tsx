@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { HiDotsHorizontal } from 'react-icons/hi'
 import { useGetUser } from '../../custom-hooks/useGetUser'
+import { Avatar } from '@mui/joy'
 export default function Profile() {
     const { session, loading, profile } = useGetUser();
     if (!session) return null;
@@ -11,12 +12,9 @@ export default function Profile() {
     return (
         <div className="mt-10 text-white flex justify-between items-center">
             <div className="flex items-center gap-2">
-                {profile?.avatar_url && (<Image
+                {profile?.avatar_url && (<Avatar
                     src={profile.avatar_url}
-                    alt="Profile"
-                    width={1440}
-                    height={960}
-                    className="w-10 h-10 rounded-full object-cover"
+                    alt="profile-pic"
                 />)}
                 <div className='hidden lg:block'>
                     <p className='font-semibold'>{profile?.name}</p>

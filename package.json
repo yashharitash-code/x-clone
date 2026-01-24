@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mui/joy": "^5.0.0-beta.64",
+    "@mui/system": "^7.3.7",
     "@rjsf/core": "^5.21.3",
     "@rjsf/mui": "^5.21.3",
     "@rjsf/utils": "^5.21.3",

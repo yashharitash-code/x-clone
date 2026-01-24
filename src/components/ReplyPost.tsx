@@ -7,6 +7,7 @@ import { RiCalendarScheduleLine } from 'react-icons/ri'
 import { useState, useRef } from 'react'
 import { RxCross2 } from 'react-icons/rx'
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react'
+import { Avatar } from '@mui/joy'
 
 export default function ReplyPost() {
     const [reply, setReply] = useState('')
@@ -34,8 +35,10 @@ export default function ReplyPost() {
 
     return (
         <div className="flex gap-4 p-4 border border-border">
-            <Image src='/images/profile.jpg' alt='profile-pic' width={1440}
-                height={960} className='w-12 h-12 object-cover rounded-full' />
+            <Avatar
+                src='/images/profile.jpg'
+                alt="profile-pic"
+            />
             <div className="w-full">
                 <textarea placeholder="what's happening?" className='w-full placeholder:text-secondary-text outline-none text-xl resize-none text-white' value={reply} onChange={(e) => { setReply(e.target.value) }}></textarea>
                 {imagePreview && <div className="h-60 md:h-100 rounded-lg overflow-hidden border border-border mb-10 relative">

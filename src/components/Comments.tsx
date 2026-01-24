@@ -3,14 +3,13 @@ import { FiRepeat } from 'react-icons/fi'
 import { IoIosStats } from 'react-icons/io'
 import Image from 'next/image'
 import { BsThreeDots } from 'react-icons/bs'
+import { Avatar } from '@mui/joy'
 export default function Comments() {
 
     return (
         <div>
             <div className="px-4 py-2 flex gap-3 border-b border-border">
-                <Image src='/images/image1.jpg' alt='profile-pic' width={100} height={100}
-                    className='w-10 h-10 object-cover rounded-full shrink-0'
-                />
+                <Avatar src='/images/image1.jpg' alt='profile-pic' />
                 <div className="w-full">
                     <div className="flex justify-between gap-2 text-sm">
                         <div className="flex gap-1 items-center text-sm">

@@ -8,6 +8,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import { EditorContent, useEditor, type Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react'
+import Avatar from '@mui/joy/Avatar'
 import Image from 'next/image'
 import { useRef, useState, type ChangeEvent } from 'react'
 import { FaRegFaceSmile } from 'react-icons/fa6'
@@ -170,12 +171,9 @@ export default function CreatePost() {
     return (
         <div className="flex gap-4 p-4 border border-border rounded-xl bg-background">
             {profile?.avatar_url && (
-                <Image
+                <Avatar
                     src={profile.avatar_url}
                     alt="profile-pic"
-                    width={1440}
-                    height={960}
-                    className="w-12 h-12 object-cover rounded-full"
                 />
             )}
             <div className="w-full">

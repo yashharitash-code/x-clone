@@ -111,7 +111,16 @@ export default function Posts() {
                                     {photo.title}
                                 </Link>
                                 <Link href={`/home/post/${photo.id}`}>
-                                    <Image src='/images/post1.jpg' alt='post-iamge' width={1800} height={1800} className='h-70 md:h-130 w-full rounded-lg border border-border object-cover' />
+                                    <Link href={`/home/post/${photo.id}`}>
+                                        <Image
+                                            src={`https://picsum.photos/id/${photo.id}/900/500`}
+                                            width={900}
+                                            height={500}
+                                            alt="post-image"
+                                            className="h-70 md:h-130 w-full rounded-lg border border-border object-cover"
+                                        />
+                                    </Link>
+
                                 </Link>
                                 <div className="flex justify-between my-4">
                                     <div className="text-secondary-text flex items-center gap-1 hover:text-blue-400 cursor-pointer">

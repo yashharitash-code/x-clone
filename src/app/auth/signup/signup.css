@@ -1,0 +1,13 @@
+/* Minimal CSS - most styling handled by MUI Theme */
+.rjsf-form {
+    width: 100%;
+}
+
+.rjsf-form .MuiFormControl-root {
+    margin-bottom: 1.5rem;
+}
+
+/* Hide default RJSF submit button */
+.rjsf-form button[type="submit"] {
+    display: none;
+}

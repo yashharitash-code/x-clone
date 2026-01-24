@@ -10,6 +10,12 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.91.0",
+    "@tanstack/react-query": "^5.90.20",
+    "@tiptap/extension-highlight": "^2.27.2",
+    "@tiptap/extension-placeholder": "^2.27.2",
+    "@tiptap/extension-text-align": "^2.27.2",
+    "@tiptap/react": "^2.27.2",
+    "@tiptap/starter-kit": "^2.27.2",
     "emoji-picker-react": "^4.17.1",
     "next": "16.1.4",
     "react": "19.2.3",

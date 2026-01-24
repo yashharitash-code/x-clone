@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { sign } from "crypto";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/SupabaseClient";
+import Button from "@mui/joy/Button";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -66,10 +67,12 @@ export default function Home() {
         <form onSubmit={signin}>
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" className="mb-6 w-full bg-background outline-none rounded-md p-4 placeholder-secondary-text border border-border text-white" />
           <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" placeholder="Password" className="w-full bg-background outline-none rounded-md p-4 placeholder-secondary-text border border-border text-white" />
-          <button className="text-black w-full mt-8 rounded-full flex h-10 items-center justify-center gap-2 cursor-pointer hover:bg-gray-200 font-semibold bg-white ">Continue</button>
+          <button className="text-black w-full mt-8 mb-8 rounded-full flex h-10 items-center justify-center gap-2 cursor-pointer hover:bg-gray-200 font-semibold bg-white ">Continue</button>
         </form>
 
-        <button className="text-white w-full mt-8 rounded-full flex h-10 items-center justify-center gap-2 cursor-pointer hover:bg-gray-200 font-semibold border border-border hover:text-black">Forgot Password</button>
+        <Button size="md" variant="outlined" color="neutral" className="w-full">
+          Forgot password?
+        </Button>
 
         <div className="text-secondary-text mt-8">
           <span className="mr-1">Don&apos;t have an account?</span>

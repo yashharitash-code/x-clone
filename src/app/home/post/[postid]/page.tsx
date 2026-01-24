@@ -1,5 +1,6 @@
+"use client"
 import GoBackButton from '@/components/GoBackButton'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaRegBookmark, FaRegComment, FaRegHeart } from 'react-icons/fa6'
 import { FiRepeat } from 'react-icons/fi'
 import { IoIosStats } from 'react-icons/io'
@@ -8,8 +9,33 @@ import Link from 'next/link'
 import { BsThreeDots } from 'react-icons/bs'
 import ReplyPost from '@/components/ReplyPost'
 import Comments from '@/components/Comments'
+import { useSearchParams } from 'next/navigation'
 
-export default function Page() {
+
+
+export default function Page({ params }: { params: { postid: string } }) {
+    const searchParams = useSearchParams()
+    const [photo, setPhoto] = useState<{ url: string; title: string } | null>(null)
+
+    useEffect(() => {
+        const url = searchParams.get('url')
+        const title = searchParams.get('title')
+
+        if (url && title) {
+            setPhoto({
+                url: decodeURIComponent(url),
+                title: decodeURIComponent(title),
+            })
+        }
+    }, [searchParams])
+
+    if (!photo) {
+        return (
+            <div className="text-secondary-text text-center py-10">
+                Post not found.
+            </div>
+        )
+    }
     return (
         <div>
             <div className="flex justify-between items-center mb-3 px-4 py-2">
@@ -35,10 +61,10 @@ export default function Page() {
                         <BsThreeDots className='text-secondary-text' />
                     </div>
                     <div className='text-white my-2 block'>
-                        Sometimes the darkness feels more honest than the light.
+                        {photo.title}
                     </div>
                     <div >
-                        <Image src='/images/post1.jpg' alt='post-iamge' width={1800} height={1800} className='h-70 md:h-130 w-full rounded-lg border border-border object-cover' />
+                        <Image src={photo.url} alt={photo.title} width={600} height={600} className='h-70 md:h-130 w-full rounded-lg border border-border object-cover' />
                     </div>
                     <div className="flex justify-between my-4">
                         <div className="text-secondary-text flex items-center gap-1 hover:text-blue-400 cursor-pointer">

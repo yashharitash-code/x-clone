@@ -151,12 +151,7 @@ export default function Home() {
                             validator={validator}
                         />
                     </div>
-                    <button
-                        onClick={() => handleSubmit({ formData })}
-                        className="text-black w-full mt-8 rounded-full flex h-10 items-center justify-center gap-2 cursor-pointer hover:bg-gray-200 font-semibold bg-white"
-                    >
-                        Continue
-                    </button>
+
 
                     <div className="text-secondary-text mt-8">
                         <span className="mr-1">Already have an account?</span>

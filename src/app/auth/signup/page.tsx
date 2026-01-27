@@ -8,6 +8,7 @@ import Form from "@rjsf/mui"
 import validator from "@rjsf/validator-ajv8"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import "./signup.css"
+import { RJSFSchema, UiSchema } from "@rjsf/utils"
 
 const darkTheme = createTheme({
     palette: {
@@ -62,7 +63,7 @@ const darkTheme = createTheme({
     },
 })
 
-const schema = {
+const schema: RJSFSchema = {
     title: "",
     type: "object",
     properties: {
@@ -79,7 +80,7 @@ const schema = {
     required: ["email", "password"],
 }
 
-const uiSchema = {
+const uiSchema: UiSchema = {
     email: {
         "ui:placeholder": "Email",
     },
@@ -88,6 +89,8 @@ const uiSchema = {
         "ui:placeholder": "Password",
     },
 }
+
+
 
 export default function Home() {
     const router = useRouter()

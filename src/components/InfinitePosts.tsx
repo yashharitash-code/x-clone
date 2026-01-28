@@ -8,6 +8,7 @@ import { FaRegBookmark, FaRegComment, FaRegHeart } from 'react-icons/fa6'
 import { FiRepeat } from 'react-icons/fi'
 import { IoIosStats } from 'react-icons/io'
 import { useInfiniteQuery } from '@tanstack/react-query'
+import { Avatar } from '@mui/material'
 
 type Photo = {
     albumId: number
@@ -91,12 +92,9 @@ export default function Posts() {
                 <React.Fragment key={pageIndex}>
                     {page.map((photo) => (
                         <div key={photo.id} className="px-4 py-2 flex gap-3 border-b border-border">
-                            <Image
+                            <Avatar
                                 src='/images/image1.jpg'
                                 alt='profile-pic'
-                                width={100}
-                                height={100}
-                                className='w-10 h-10 object-cover rounded-full shrink-0'
                             />
                             <div className="w-full">
                                 <div className="flex justify-between gap-2 text-sm">

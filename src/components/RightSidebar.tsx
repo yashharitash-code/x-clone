@@ -1,6 +1,7 @@
 import React from 'react'
 import { IoSearchOutline } from 'react-icons/io5'
 import Image from 'next/image'
+import { Avatar } from '@mui/material'
 
 export default function RightSidebar() {
     return (
@@ -18,7 +19,7 @@ export default function RightSidebar() {
                 <h3 className='mb-4 text-2xl font-bold'>Who to Follow</h3>
                 <div className="flex justify-between items-center mb-6">
                     <div className="flex gap-2 items-center">
-                        <Image src='/images/image1.jpg' alt='profile-pic' width={800} height={800} className='w-10 h-10 object-cover rounded-full' />
+                        <Avatar src='/images/image1.jpg' alt='profile-pic' />
                         <div className='text-white'>
                             <p>Zara Anya Patel</p>
                             <p className='text-secondary-text font-light'>@zara</p>
@@ -30,7 +31,7 @@ export default function RightSidebar() {
                 </div>
                 <div className="flex justify-between items-center mb-6">
                     <div className="flex gap-2 items-center">
-                        <Image src='/images/image3.jpg' alt='profile-pic' width={800} height={800} className='w-10 h-10 object-cover rounded-full' />
+                        <Avatar src='/images/image3.jpg' alt='profile-pic' />
                         <div className='text-white'>
                             <p>Olivia Scott</p>
                             <p className='text-secondary-text font-light'>@olivia</p>
@@ -42,7 +43,7 @@ export default function RightSidebar() {
                 </div>
                 <div className="flex justify-between items-center mb-6">
                     <div className="flex gap-2 items-center">
-                        <Image src='/images/image2.jpg' alt='profile-pic' width={800} height={800} className='w-10 h-10 object-cover rounded-full' />
+                        <Avatar src='/images/image2.jpg' alt='profile-pic' />
                         <div className='text-white'>
                             <p>Henry Donald</p>
                             <p className='text-secondary-text font-light'>@henry</p>

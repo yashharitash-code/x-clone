@@ -8,6 +8,7 @@ import { FaRegBookmark, FaRegComment, FaRegHeart } from 'react-icons/fa6'
 import { FiRepeat } from 'react-icons/fi'
 import { IoIosStats } from 'react-icons/io'
 import { useGetTweets } from '../../custom-hooks/useTweet'
+import { Avatar } from '@mui/material'
 
 
 
@@ -42,12 +43,9 @@ export default function Posts() {
         <div>
             {tweets.map((tweet) => (
                 <div key={tweet.id} className="px-4 py-2 flex gap-3 border-b border-border">
-                    <Image
+                    <Avatar
                         src={tweet.profiles.avatar_url || '/images/image1.jpg'}
                         alt='profile-pic'
-                        width={100}
-                        height={100}
-                        className='w-10 h-10 object-cover rounded-full shrink-0'
                     />
                     <div className="w-full">
                         <div className="flex justify-between gap-2 text-sm">
@@ -61,19 +59,23 @@ export default function Posts() {
                             <BsThreeDots className='text-secondary-text' />
                         </div>
                         {tweet.content && (
-                            <div
-                                className='text-white my-2 block'
-                                dangerouslySetInnerHTML={{ __html: tweet.content }}
-                            />
+                            <Link href={`/home/post/${tweet.id}?title=${encodeURIComponent(tweet.content)}&url=${encodeURIComponent(tweet.image_url || '')}&avatar_url=${encodeURIComponent(tweet.profiles.avatar_url || '')}&name=${encodeURIComponent(tweet.profiles.name)}&username=${encodeURIComponent(tweet.profiles.username)}`}>
+                                <div
+                                    className='text-white my-2 block'
+                                    dangerouslySetInnerHTML={{ __html: tweet.content }}
+                                />
+                            </Link>
                         )}
                         {tweet.image_url && (
-                            <Image
-                                src={tweet.image_url}
-                                width={900}
-                                height={500}
-                                alt="post-image"
-                                className="h-70 md:h-130 w-full rounded-lg border border-border object-cover"
-                            />
+                            <Link href={`/home/post/${tweet.id}?title=${encodeURIComponent(tweet.content)}&url=${encodeURIComponent(tweet.image_url || '')}&avatar_url=${encodeURIComponent(tweet.profiles.avatar_url || '')}&name=${encodeURIComponent(tweet.profiles.name)}&username=${encodeURIComponent(tweet.profiles.username)}`}>
+                                <Image
+                                    src={tweet.image_url}
+                                    width={600}
+                                    height={600}
+                                    alt="post-image"
+                                    className="h-70 md:h-130 w-full rounded-lg border border-border object-cover"
+                                />
+                            </Link >
                         )}
                         <div className="flex justify-between my-4">
                             <div className="text-secondary-text flex items-center gap-1 hover:text-blue-400 cursor-pointer">
@@ -98,7 +100,8 @@ export default function Posts() {
                         </div>
                     </div>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     )
 }

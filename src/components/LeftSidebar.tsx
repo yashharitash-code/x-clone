@@ -51,7 +51,7 @@ export default function LeftSidebar() {
                 </Link>
 
 
-                <Link href="/table" className='text-white flex items-center lg:gap-3 p-3 rounded-full hover:bg-hover'>
+                <Link href="/home/table" className='text-white flex items-center lg:gap-3 p-3 rounded-full hover:bg-hover'>
                     <TbDotsCircleHorizontal size={30} />
                     <span className="hidden lg:inline text-xl font-bold">More</span>
                 </Link>

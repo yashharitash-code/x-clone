@@ -1,5 +1,4 @@
 import CreatePost from '@/components/CreatePost'
-import InfinitePosts from '@/components/InfinitePosts'
 import Posts from '@/components/Posts'
 import React from 'react'
 
@@ -15,7 +14,7 @@ const Page = () => {
                 </button>
             </div>
             <CreatePost />
-            <InfinitePosts />
+            <Posts />
         </div>
     )
 }

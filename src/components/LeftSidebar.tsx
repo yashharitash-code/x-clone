@@ -15,7 +15,7 @@ export default function LeftSidebar() {
                 <FaXTwitter size={30} />
             </p>
             <div className="space-y-2">
-                <Link href="#" className='text-white flex items-center lg:gap-3 p-3 rounded-full hover:bg-hover'>
+                <Link href="/home" className='text-white flex items-center lg:gap-3 p-3 rounded-full hover:bg-hover'>
                     <GoHomeFill size={30} />
                     <span className="hidden lg:inline text-xl font-bold">Home</span>
                 </Link>
@@ -45,7 +45,7 @@ export default function LeftSidebar() {
                     <span className="hidden lg:inline text-xl font-bold">Premium</span>
                 </Link>
 
-                <Link href="#" className='text-white flex items-center lg:gap-3 p-3 rounded-full hover:bg-hover'>
+                <Link href="/home/profile" className='text-white flex items-center lg:gap-3 p-3 rounded-full hover:bg-hover'>
                     <FaRegUser size={30} />
                     <span className="hidden lg:inline text-xl font-bold">Profile</span>
                 </Link>

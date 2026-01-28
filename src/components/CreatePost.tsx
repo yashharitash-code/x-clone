@@ -17,6 +17,7 @@ import { RiCalendarScheduleLine } from 'react-icons/ri'
 import { RxCross2 } from 'react-icons/rx'
 import { TbPhoto } from 'react-icons/tb'
 import { useGetUser } from '../../custom-hooks/useGetUser'
+import { usePostTweet } from '../../custom-hooks/useTweet'
 
 type MenuBarProps = {
     editor: Editor | null
@@ -123,6 +124,7 @@ export default function CreatePost() {
     const [hasText, setHasText] = useState(false)
     const fileref = useRef<HTMLInputElement>(null)
     const { loading, session, profile } = useGetUser()
+    const { mutate, isPending } = usePostTweet()
 
     const editor = useEditor({
         extensions: [
@@ -150,7 +152,6 @@ export default function CreatePost() {
             setImagePreview(URL.createObjectURL(file))
         }
     }
-
     const removeImage = () => {
         setImagePreview(null)
         if (fileref.current) {
@@ -162,7 +163,33 @@ export default function CreatePost() {
         editor?.chain().focus().insertContent(emojiData.emoji).run()
     }
 
-    const isDisabled = !hasText && !imagePreview
+    const handlePost = () => {
+        if (!session?.user?.id || !editor) return
+
+        const content = editor.getHTML()
+        const imageFile = fileref.current?.files?.[0] || null
+
+        mutate(
+            {
+                userId: session.user.id,
+                content: content,
+                tweetImage: imageFile,
+            },
+            {
+                onSuccess: () => {
+                    editor.commands.clearContent()
+                    setImagePreview(null)
+                    setHasText(false)
+                    if (fileref.current) {
+                        fileref.current.value = ''
+                    }
+                    setShowPicker(false)
+                },
+            }
+        )
+    }
+
+    const isDisabled = (!hasText && !imagePreview) || isPending
 
     if (!session) return null
     if (!profile) return null
@@ -223,7 +250,11 @@ export default function CreatePost() {
                             Post
                         </button>
                     ) : (
-                        <button className="text-black bg-white py-2 px-5 font-semibold cursor-pointer rounded-full" type="button">
+                        <button
+                            className="text-black bg-white py-2 px-5 font-semibold cursor-pointer rounded-full"
+                            type="button"
+                            onClick={handlePost}
+                        >
                             Post
                         </button>
                     )}

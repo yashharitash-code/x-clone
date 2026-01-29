@@ -5,95 +5,71 @@ import {
     useMaterialReactTable,
     type MRT_ColumnDef,
 } from 'material-react-table';
-import GoBackButton from '@/components/GoBackButton';
+import {
+    QueryClient,
+    QueryClientProvider,
+    useQuery,
+} from '@tanstack/react-query';
 
-type Person = {
-    name: {
-        firstName: string;
-        lastName: string;
+
+
+type User = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    address: {
+        street: string;
+        suite: string;
+        city: string;
+        zipcode: string;
     };
-    address: string;
-    city: string;
-    state: string;
+    phone: string;
+    website: string;
+    company: {
+        name: string;
+    };
 };
 
 
-const data: Person[] = [
-    {
-        name: {
-            firstName: 'John',
-            lastName: 'Doe',
-        },
-        address: '261 Erdman Ford',
-        city: 'East Daphne',
-        state: 'Kentucky',
-    },
-    {
-        name: {
-            firstName: 'Jane',
-            lastName: 'Doe',
-        },
-        address: '769 Dominic Grove',
-        city: 'Columbus',
-        state: 'Ohio',
-    },
-    {
-        name: {
-            firstName: 'Joe',
-            lastName: 'Doe',
-        },
-        address: '566 Brakus Inlet',
-        city: 'South Linda',
-        state: 'West Virginia',
-    },
-    {
-        name: {
-            firstName: 'Kevin',
-            lastName: 'Vandy',
-        },
-        address: '722 Emie Stream',
-        city: 'Lincoln',
-        state: 'Nebraska',
-    },
-    {
-        name: {
-            firstName: 'Joshua',
-            lastName: 'Rolluffs',
-        },
-        address: '32188 Larkin Turnpike',
-        city: 'Omaha',
-        state: 'Nebraska',
-    },
-];
-
 const Example = () => {
+    const { data = [], isLoading, isError, refetch } = useQuery<User[]>({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch(
+                'https://jsonplaceholder.typicode.com/users',
+            );
+            return res.json();
+        },
+    });
 
-    const columns = useMemo<MRT_ColumnDef<Person>[]>(
+    const columns = useMemo<MRT_ColumnDef<User>[]>(
         () => [
             {
-                accessorKey: 'name.firstName',
-                header: 'First Name',
-                size: 150,
+                accessorKey: 'name',
+                header: 'Name',
             },
             {
-                accessorKey: 'name.lastName',
-                header: 'Last Name',
-                size: 150,
+                accessorKey: 'username',
+                header: 'Username',
             },
             {
-                accessorKey: 'address',
-                header: 'Address',
-                size: 200,
+                accessorKey: 'email',
+                header: 'Email',
             },
             {
-                accessorKey: 'city',
+                accessorFn: (row) => row.address.city,
+                id: 'city',
                 header: 'City',
-                size: 150,
             },
             {
-                accessorKey: 'state',
-                header: 'State',
-                size: 150,
+                accessorKey: 'phone',
+                header: 'Phone',
+            },
+            {
+                accessorFn: (row) => row.company.name,
+                id: 'company',
+                header: 'Company',
             },
         ],
         [],
@@ -102,23 +78,36 @@ const Example = () => {
     const table = useMaterialReactTable({
         columns,
         data,
+        enableColumnFilters: true,
+        enableGlobalFilter: true,
+        enableSorting: true,
+        enablePagination: true,
+        state: {
+            isLoading,
+            showAlertBanner: isError,
+        },
+        muiToolbarAlertBannerProps: isError
+            ? {
+                color: 'error',
+                children: 'Error loading users',
+            }
+            : undefined,
+        renderTopToolbarCustomActions: () => (
+            <button onClick={() => refetch()}>Refresh</button>
+        ),
     });
 
-    return (
-        <>
-            <div className="flex justify-between items-center mb-3 px-4 py-2">
-                <div className="text-white flex items-center gap-3">
-
-                    <GoBackButton />
-
-                </div>
-            </div>
-            <div className='flex h-full w-full flex-col items-center p-2 justify-center'>
-                <MaterialReactTable table={table} />
-            </div>
-        </>
-
-    );
+    return <MaterialReactTable table={table} />;
 };
 
-export default Example;
+
+
+const queryClient = new QueryClient();
+
+export default function App() {
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Example />
+        </QueryClientProvider>
+    );
+}
